@@ -1,0 +1,6 @@
+git add *
+git commit -m "comments"
+git push origin master
+username
+password
+after you make changes: git pull
