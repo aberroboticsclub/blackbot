@@ -1,4 +1,4 @@
-#define leftMotorForward 6
+#define leftMotorForward 5
 #define leftMotorReverse 9
 #define rightMotorForward 6
 #define rightMotorReverse 10
