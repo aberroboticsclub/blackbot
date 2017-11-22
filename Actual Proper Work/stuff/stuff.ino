@@ -38,7 +38,7 @@ void backward() {
   digitalWrite(leftMotorForward , LOW);
   digitalWrite(leftMotorReverse , HIGH);
   digitalWrite(rightMotorForward , LOW);
-  digitalWrite(rightMotorReverse , HIGH); 
+  digitalWrite(rightMotorReverse , HIGH);
 }
 
 void left() {
@@ -67,7 +67,7 @@ void setup() {
   pinMode (leftMotorForward , OUTPUT);
   pinMode (leftMotorReverse , OUTPUT);
   pinMode (rightMotorForward , OUTPUT);
-  pinMode (rightMotorReverse , OUTPUT); 
+  pinMode (rightMotorReverse , OUTPUT);
   ultrasonicServo.attach(12);
   ultrasonicServo.write(900);
   ultrasonicServo1.attach(12);
@@ -75,11 +75,16 @@ void setup() {
 }
 
 void loop() {
+  movingItNow();
+  abc();
+}
+
+void abc() {
   pingUltrasonic();
   pingUltrasonic1();
   //Serial.print("left : ");
   Serial.print(distance);
-  //Serial.print(" , right : ");
+  Serial.print(" ,  ");
   Serial.println(distance1);
 }
 
@@ -89,7 +94,30 @@ void pingUltrasonic() {
 }
 
 void pingUltrasonic1() {
-    distance1 = sonar1.ping_cm();
-    delay(100);
+  distance1 = sonar1.ping_cm();
+  delay(100);
+}
+
+void movingItNow() {
+  if (distance < 20) {
+    left();
+  }
+  else if (distance1 < 20) {
+    right();
+  }
+  else if (distance = 0) {
+    forward();
+  }
+  else if (distance1 = 20) {
+    forward();
+  }
+  /*else if ((distance < 20) && (distance1 < 20)) {
+    backward();
+    delay(1000);
+    left();
+  }
+  else {
+    forward();
+  }*/
 }
 
