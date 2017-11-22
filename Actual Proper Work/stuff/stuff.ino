@@ -1,3 +1,7 @@
+
+#include <NewPing.h>
+#include <Servo.h>
+
 #define leftMotorForward 5
 #define leftMotorReverse 9
 #define rightMotorForward 6
@@ -11,8 +15,16 @@
 #define switchOne 7
 #define switchTwo 4
 
+NewPing sonar(rightTriggerPin , rightEchoPin , 400);
+NewPing sonar1(leftTriggerPin , leftEchoPin , 400);
+
+Servo ultrasonicServo1;
+Servo ultrasonicServo;
+
 char input;
 
+int pos;
+int distance1 = 0;
 int distance = 0;
 
 void forward() {
@@ -52,41 +64,32 @@ void bStop() {
 
 void setup() {
   Serial.begin(9600);
-  //pinMode (myMotor , OUTPUT);
   pinMode (leftMotorForward , OUTPUT);
   pinMode (leftMotorReverse , OUTPUT);
   pinMode (rightMotorForward , OUTPUT);
   pinMode (rightMotorReverse , OUTPUT); 
+  ultrasonicServo.attach(12);
+  ultrasonicServo.write(900);
+  ultrasonicServo1.attach(12);
+  ultrasonicServo1.write(900);
 }
 
 void loop() {
-  if (Serial.available()) {
-    input = Serial.read();
+  pingUltrasonic();
+  pingUltrasonic1();
+  //Serial.print("left : ");
+  Serial.print(distance);
+  //Serial.print(" , right : ");
+  Serial.println(distance1);
+}
 
-    switch(input) {
+void pingUltrasonic() {
+  distance = sonar.ping_cm();
+  delay(100);
+}
 
-      case 'w':
-        forward();
-
-        break;
-
-      case 'a':
-        left();
-
-        break;
-
-      case 's':
-        backward();
-
-        break;
-
-      case 'd':
-        right();
-        break;
-
-      case 'q':
-      bStop();  
-    }
-  }
+void pingUltrasonic1() {
+    distance1 = sonar1.ping_cm();
+    delay(100);
 }
 
