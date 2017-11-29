@@ -1,4 +1,4 @@
-git add *
+md-git add *
 git commit -m "comments"
 git push origin master
 username
