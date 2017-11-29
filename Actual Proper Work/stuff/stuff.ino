@@ -1,4 +1,3 @@
-
 #include <NewPing.h>
 #include <Servo.h>
 
@@ -23,9 +22,9 @@ Servo ultrasonicServo;
 
 char input;
 
-int pos;
-int distance1 = 0;
+int distance1 = 0; 
 int distance = 0;
+int bigDistance = 0;
 
 void forward() {
   digitalWrite(leftMotorForward , HIGH);
@@ -75,8 +74,9 @@ void setup() {
 }
 
 void loop() {
-  movingItNow();
   abc();
+  bigDistance = (distance + distance1);
+  movingItNow();
 }
 
 void abc() {
@@ -108,16 +108,30 @@ void movingItNow() {
   else if (distance = 0) {
     forward();
   }
-  else if (distance1 = 20) {
+  else if (distance1 = 0) {
     forward();
   }
-  /*else if ((distance < 20) && (distance1 < 20)) {
-    backward();
-    delay(1000);
-    left();
+  else if (bigDistance < 20) {
+    bStop();
+    delay(200);
+    if (distance1 > 20) {
+      left();
+      delay(500);
+      forward();
+    }
+    else if (distance < 20) {
+      right();
+      delay(500);
+      forward();
+    }
+    else {
+      backward();
+      delay(500);
+      right();
+    }
   }
   else {
     forward();
-  }*/
+  }
 }
 
