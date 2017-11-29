@@ -111,7 +111,7 @@ void movingItNow() {
   else if (distance1 = 0) {
     forward();
   }
-  else if (bigDistance < 20) {
+  else if ((bigDistance < 30) & (distance < 20) % (distance1 < 20)) {
     bStop();
     delay(200);
     if (distance1 > 20) {
