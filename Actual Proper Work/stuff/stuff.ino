@@ -1,10 +1,10 @@
 #include <NewPing.h>
 #include <Servo.h>
 
-#define leftMotorForward 5
-#define leftMotorReverse 9
-#define rightMotorForward 6
-#define rightMotorReverse 10
+#define lmf 5
+#define lmr 9
+#define rmf 6
+#define rmr 10
 
 #define leftTriggerPin A3
 #define leftEchoPin A2
@@ -22,51 +22,52 @@ Servo ultrasonicServo;
 
 char input;
 
+int i = 0;
 int distance1 = 0; 
 int distance = 0;
 int bigDistance = 0;
 
 void forward() {
-  digitalWrite(leftMotorForward , HIGH);
-  digitalWrite(leftMotorReverse , LOW);
-  digitalWrite(rightMotorForward , HIGH);
-  digitalWrite(rightMotorReverse , LOW);
+  digitalWrite(lmf , HIGH);
+  digitalWrite(lmr , LOW);
+  digitalWrite(rmf , HIGH);
+  digitalWrite(rmr , LOW);
 }
 
 void backward() {
-  digitalWrite(leftMotorForward , LOW);
-  digitalWrite(leftMotorReverse , HIGH);
-  digitalWrite(rightMotorForward , LOW);
-  digitalWrite(rightMotorReverse , HIGH);
+  digitalWrite(lmf , LOW);
+  digitalWrite(lmr , HIGH);
+  digitalWrite(rmf , LOW);
+  digitalWrite(rmr , HIGH);
 }
 
 void left() {
-  digitalWrite(leftMotorForward , HIGH);
-  digitalWrite(leftMotorReverse , LOW);
-  digitalWrite(rightMotorForward , LOW);
-  digitalWrite(rightMotorReverse , HIGH);
+  digitalWrite(lmf , HIGH);
+  digitalWrite(lmr , LOW);
+  digitalWrite(rmf , LOW);
+  digitalWrite(rmr , HIGH);
 }
 
 void right() {
-  digitalWrite(leftMotorForward , LOW);
-  digitalWrite(leftMotorReverse , HIGH);
-  digitalWrite(rightMotorForward , HIGH);
-  digitalWrite(rightMotorReverse , LOW);
+  digitalWrite(lmf , LOW);
+  digitalWrite(lmr , HIGH);
+  digitalWrite(rmf , HIGH);
+  digitalWrite(rmr , LOW);
 }
 
 void bStop() {
-  digitalWrite(leftMotorForward , LOW);
-  digitalWrite(leftMotorReverse , LOW);
-  digitalWrite(rightMotorForward , LOW);
-  digitalWrite(rightMotorReverse , LOW);
+  digitalWrite(lmf, LOW);
+  digitalWrite(lmr , LOW);
+  digitalWrite(rmf , LOW);
+  digitalWrite(rmr , LOW);
 }
 
 void setup() {
   Serial.begin(9600);
-  pinMode (leftMotorForward , OUTPUT);
-  pinMode (leftMotorReverse , OUTPUT);
-  pinMode (rightMotorForward , OUTPUT);
-  pinMode (rightMotorReverse , OUTPUT);
+  pinMode (lmf , OUTPUT);
+  pinMode (lmr , OUTPUT);
+  pinMode (rmf , OUTPUT);
+  pinMode (rmr , OUTPUT);
   ultrasonicServo.attach(12);
   ultrasonicServo.write(900);
   ultrasonicServo1.attach(12);
@@ -99,20 +100,25 @@ void pingUltrasonic1() {
 }
 
 void movingItNow() {
-  if (distance < 20) {
+  /*if ((distance < 20) && (distance > 0)) {
     left();
   }
-  else if (distance1 < 20) {
+  else if ((distance1 < 20) && (distance1 > 0)) {
     right();
   }
-  else if (distance = 0) {
-    forward();
-  }
-  else if (distance1 = 0) {
-    forward();
-  }
-  else if ((bigDistance < 30) & (distance < 20) % (distance1 < 20)) {
-    bStop();
+  else*/ if ((bigDistance < 40) || (distance < 20) || (distance1 < 20)) {
+    do {
+      for (i =0; i <= 25; i++) {
+        left();
+        delay(150);
+        pingUltrasonic();
+        delay(5);
+        pingUltrasonic1();
+        delay(5);
+        int x = 0;
+      }
+    } while (bigDistance < 40);
+    /*bStop();
     delay(200);
     if (distance1 > 20) {
       left();
