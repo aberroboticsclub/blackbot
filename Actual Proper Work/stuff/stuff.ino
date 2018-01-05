@@ -100,25 +100,30 @@ void pingUltrasonic1() {
 }
 
 void movingItNow() {
-  /*if ((distance < 20) && (distance > 0)) {
+  if ((distance < 20) && (distance > 0)) {
     left();
   }
   else if ((distance1 < 20) && (distance1 > 0)) {
     right();
   }
-  else*/ if ((bigDistance < 40) || (distance < 20) || (distance1 < 20)) {
-    do {
-      for (i =0; i <= 25; i++) {
+  else if ((bigDistance < 40) || (distance < 20) || (distance1 < 20)) {
+    if (distance < distance1) {
+      while ((bigDistance < 40) && (distance < 20) && (distance1 < 20)) {
         left();
-        delay(150);
-        pingUltrasonic();
-        delay(5);
-        pingUltrasonic1();
-        delay(5);
-        int x = 0;
       }
-    } while (bigDistance < 40);
-    /*bStop();
+    }
+    else if (distance > distance1) {
+      while ((bigDistance < 40) && (distance < 20) && (distance1 < 20)) {
+        right();
+       }
+    }
+     else {
+       forward();
+      }
+    }
+  } // you will need to potentially look at the curly bracket configuration
+    /*
+    bStop();
     delay(200);
     if (distance1 > 20) {
       left();
