@@ -100,7 +100,13 @@ void pingUltrasonic1() {
 }
 
 void movingItNow() {
-  if ((distance < 20) && (distance > 0)) {
+  if (distance == 0) {
+    distance = 1;
+  }
+  else if (distance1 == 0) {
+    distance1 = 1;
+  }
+  else if ((distance < 20) && (distance > 0)) {
     left();
   }
   else if ((distance1 < 20) && (distance1 > 0)) {
