@@ -83,7 +83,6 @@ void loop() {
 void abc() {
   pingUltrasonic();
   pingUltrasonic1();
-  //Serial.print("left : ");
   Serial.print(distance);
   Serial.print(" ,  ");
   Serial.println(distance1);
@@ -107,10 +106,10 @@ void movingItNow() {
     distance1 = 1;
   }
   else if ((distance < 20) && (distance > 0)) {
-    left();
+    right();
   }
   else if ((distance1 < 20) && (distance1 > 0)) {
-    right();
+    left();
   }
   else if ((bigDistance < 40) || (distance < 20) || (distance1 < 20)) {
     if (distance < distance1) {
