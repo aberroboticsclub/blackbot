@@ -102,10 +102,10 @@ void movingItNow() {
   if (distance == 0) {
     distance = 1;
   }
-  else if (distance1 == 0) {
+  if (distance1 == 0) {
     distance1 = 1;
   }
-  else if ((distance < 20) && (distance > 0) && (distance1 > 20)) {
+  if ((distance < 20) && (distance > 0) && (distance1 > 20)) {
     left();
     delay(750);
     forward();
@@ -113,7 +113,7 @@ void movingItNow() {
     right();
     delay(750);
   }
-  else if ((distance1 < 20) && (distance1 > 0) && (distance > 20)) {
+  if ((distance1 < 20) && (distance1 > 0) && (distance > 20)) {
     right();
     delay(750);
     forward();
@@ -121,21 +121,22 @@ void movingItNow() {
     left();
     delay(750);
   }
-  /*else if ((bigDistance < 40) || (distance < 20) || (distance1 < 20)) {
-      if (distance < distance1) {
-        while ((bigDistance < 40) && (distance < 20) && (distance1 < 20)) {
-          left();
-        }
-      }++
-      else if (distance > distance1) {
-        while ((bigDistance < 40) && (distance < 20) && (distance1 < 20)) {
-          right();
-        }
-      }*/
-  while ((distance1 > 20) && (distance > 20)) {
+  else while ((distance1 > 20) && (distance > 20)) {
     forward();
   }
 }
+/*else if ((bigDistance < 40) || (distance < 20) || (distance1 < 20)) {
+    if (distance < distance1) {
+      while ((bigDistance < 40) && (distance < 20) && (distance1 < 20)) {
+        left();
+      }
+    }++
+    else if (distance > distance1) {
+      while ((bigDistance < 40) && (distance < 20) && (distance1 < 20)) {
+        right();
+      }
+    }*/
+
 //}you will need to potentially look at the curly bracket configuration
 /*
   bStop();
